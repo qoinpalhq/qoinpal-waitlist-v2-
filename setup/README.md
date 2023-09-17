@@ -1,3 +1,22 @@
+# Before you start
+
+## styling
+- Below are the styles extracted from the figma file.
+- Inspect the `index.css` file. Use those classes for Typography. Text responsiveness already done.
+- Also inspect `tailwind.config.js` file. Added the classes for the colors and stuff.
+
+## Workflow
+- Fork repo.
+- Clone
+- Create new branch
+- Work
+- Add, commit and please please please pull upstream again (to avoid conflict)
+- Push to your branch on origin (Not to main!!)
+- send pull request.
+-  Also please push your code regularly, preferably before resting.
+- Lets do this!
+
+
 # Colors
 
 ## Theme
