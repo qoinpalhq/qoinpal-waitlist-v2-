@@ -1,15 +1,15 @@
-import { useState } from 'react'
+// import Navbar from "./components/Navbar"
+import Home from "../src/pages/Home"
+import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
-  
-
   return (
-    <div className = "bg-secondary h-screen w-full flex flex-col items-center justify-center">
-    <h3 className = "text-primary"> Tailwind is running</h3>
-      <h2 className = "text-accent"> Tailwind is running</h2>
-      <h1 className = "text-background"> Tailwind is running</h1>
-        
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
   )
 }
 
