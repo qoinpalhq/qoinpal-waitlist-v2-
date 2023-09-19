@@ -16,7 +16,7 @@ const Congratulations = () => {
                 </div>
                 <div className="flex flex-row gap-4 items-center justify-center ">
                     <p className="flex flex-row text-white text-base">Contact Us</p>
-                    <button className="flex items-center justify-center border rounded-3xl bg-[#FAFFE6] w-40 p-4">Home</button>
+                    <button className="flex items-center justify-center border rounded-3xl bg-[#FAFFE6] w-40 p-3">Home</button>
                 </div>
             </div>
         </div>
