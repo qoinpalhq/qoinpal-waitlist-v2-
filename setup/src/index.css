@@ -3,6 +3,11 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+@font-face {
+  font-family: "Bright-Flicks";
+  src: url(../assets/fonts/brightflicks-owz00.otf);
+}
+
 /* Your custom styles go here */
 /* For desktop */
 @media (min-width: 768px) {

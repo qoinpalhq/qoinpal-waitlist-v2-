@@ -21,6 +21,7 @@ export default {
       },
       fontFamily: {
         display: ['red hat display', 'sans'],
+        brightFlicks:["Bright-Flicks","cursive"],
       },
       fontSize: {
         '3xl': '3.625rem',
