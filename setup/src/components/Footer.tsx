@@ -1,4 +1,3 @@
-import React from "react";
 import copyright from '../../assets/tabler_copyright.png'
 import Xicon from "../../assets/simple-icons_x.png"
 import instagram from "../../assets/cib_instagram.png"
