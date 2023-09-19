@@ -1,4 +1,5 @@
 import arrowdown from "../../assets/arrow-down.png"
+
 const FAQ = () => {
     return (
         <div className="">
