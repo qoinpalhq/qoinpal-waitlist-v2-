@@ -1,6 +1,6 @@
 const Newsletters = () => {
     return (
-        <div className="flex px-24 py-12">
+        <div className="hidden md:flex px-24 py-12">
             <div className="flex border  w-156 bg-[#111111] w-full h-96 rounded-3xl items-center justify-center">
                 <div className="items-center flex flex-col justify-center w-full h-full">
                     <p className="text-center text-[#FFFFFF] leading-10 text-3xl mb-8">Be part of our waitlist!</p>
