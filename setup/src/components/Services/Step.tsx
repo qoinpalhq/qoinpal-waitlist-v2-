@@ -20,9 +20,9 @@ const Step:React.Fc <Props> = ({num,title,end,subtext}) => (
     </div>
     )
     }
-    
+
   </div>
-  
-  )
-  
-  export default Step
+
+)
+
+export default Step
