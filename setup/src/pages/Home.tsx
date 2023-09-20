@@ -7,13 +7,14 @@ import MobileFAQ from "../components/MobileFAQ";
 import MobileNewsLetter from "../components/MobileNewsLetter";
 import Newsletters from "../components/Newsletters";
 import MobileFooter from "../components/MobileFooter";
+import Services from "../components/Services/Services"
 
 const Home = () => {
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 428);
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth <= 768);
+            setIsMobile(window.innerWidth <= 428);
         };
 
         window.addEventListener("resize", handleResize);
@@ -25,6 +26,7 @@ const Home = () => {
 
     return (
         <div>
+            <Services />
             {isMobile ? (
                 <>
                     <MobileNewsLetter />
@@ -34,12 +36,14 @@ const Home = () => {
                 </>
             ) : (
                 <>
+                    {/* <Services /> */}
                     <Newsletters />
                     <FAQ />
                     <Congratulations />
                     <Footer />
                 </>
             )}
+            
         </div>
     );
 };

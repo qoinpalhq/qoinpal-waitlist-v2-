@@ -2,7 +2,7 @@
 
 const MobileNewsLetter = () => {
     return (
-        <div className="lg:hidden flex flex-col items-center justify-center px-4 py-10">
+        <div className="lg:hidden w-full flex flex-col items-center justify-center px-4 py-10">
             <div className="flex flex-col bg-black items-center justify-center border rounded-2xl">
                 <div className="flex flex-col items-center justify-center">
                     <p className="flex text-white text-xl items-center justify-center mt-9 mb-4">Be Part of our waitlist!</p>
