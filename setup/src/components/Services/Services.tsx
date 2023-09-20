@@ -19,7 +19,8 @@ export default function Services(){
         </div>
         
         <div id = "right" className = "flex items-center"> 
-          <img src = {Image1} alt = "" className = "align-end"/>
+         <img src={Image1} alt="Sending and Receiving Money Quickly" className="align-end" />
+
         </div>
     </div>
   

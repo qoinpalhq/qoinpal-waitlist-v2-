@@ -7,10 +7,11 @@ import FAQ from "../components/FAQ"
 import Footer from "../components/Footer"
 import MobileNewsLetter from "../components/MobileNewsLetter"
 import Newsletters from "../components/Newsletters"
-
+import Modal from "../components/Modal"
 const Home = () => {
     return (
       <div>
+      <Modal />
         <section className="min-h-screen bg-black">
           <Navbar />
           <HeroSection />

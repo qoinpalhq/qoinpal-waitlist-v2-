@@ -16,7 +16,7 @@ const Step:React.Fc <Props> = ({num,title,end,subtext}) => (
     </div>
     
     {!end &&(
-    <div className = 'h-[40px] md:h-[80px] bg-light-gray w-[1px] absolute left-2 top-[100%] md:top-[100%]'> 
+    <div aria-hidden className = 'h-[40px] md:h-[80px] bg-light-gray w-[1px] absolute left-2 top-[100%] md:top-[100%]'> 
     </div>
     )
     }
