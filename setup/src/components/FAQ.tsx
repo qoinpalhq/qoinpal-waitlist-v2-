@@ -1,10 +1,9 @@
-/* eslint-disable react-refresh/only-export-components */
 import arrowdown from "../../assets/arrow-down.png"
 
 const FAQ = () => {
     return (
         <div className="">
-            <h1 className="flex items-center justify-center text-bold text-[#111111] mb-20 ">FAQs</h1>
+            <h1 className=" flex items-center justify-center text-bold text-[#111111] mb-20 ">FAQs</h1>
             <div className="flex items-center justify-center flex-col">
                 <div className="flex flex-col border rounded-2xl border-[#BFBFBF]] w-[1035px] mb-6">
                     <div className="flex items-center justify-between px-4 my-8 ">
