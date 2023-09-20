@@ -19,8 +19,10 @@ export default function Services() {
           </button>
         </div>
 
+
         <div id="right" className="flex items-center">
           <img src={Image1} alt="" className="align-end" />
+
         </div>
       </div>
 
