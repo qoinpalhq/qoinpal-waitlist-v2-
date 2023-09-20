@@ -6,14 +6,14 @@ import Step from "./Step"
 
 export default function Services(){
   return (
-    <div id = "wrapper" className= " bg-background  flex flex-col items-center px-24 pt-24 "> 
+    <div id = "wrapper" className= " bg-background  flex flex-col items-center px-7 md:px-24 py-7 md:pt-24 "> 
   
-     <div id = "top" className = "flex gap-20 space-between w-full pb-32"> 
-        <div id = "left" className = "w-4/5">
+     <div id = "top" className = "flex flex-col md:flex-row gap-20 space-between w-full pb-32"> 
+        <div id = "left" className = "w-full md:w-4/5">
           <h2 className = "font-medium"> {data.title}
           </h2>
           <p className = "subtitle font-light pt-6 pb-7">{data.body}</p>
-          <button className = "bg-primary text-white px-10 py-5 rounded-full">
+          <button className = "bg-primary text-white px-10 py-3 rounded-full">
           Sign up on the waitlist
           </button>
         </div>

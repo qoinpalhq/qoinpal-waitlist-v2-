@@ -1,6 +1,6 @@
 
 
-import Services from "../components/Services/Services
+import Services from "../components/Services/Services"
 import Congratulations from "../components/Congratulations"
 import FAQ from "../components/FAQ"
 import Footer from "../components/Footer"
