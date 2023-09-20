@@ -8,6 +8,8 @@ import MobileNewsLetter from "../components/MobileNewsLetter";
 import Newsletters from "../components/Newsletters";
 import MobileFooter from "../components/MobileFooter";
 import Services from "../components/Services/Services"
+import HeroSection from "../components/HeroSection"
+import Navbar from "../components/Navbar"
 
 const Home = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 428);
@@ -26,6 +28,10 @@ const Home = () => {
 
     return (
         <div>
+            <section className="min-h-screen bg-black">
+                <Navbar />
+                <HeroSection />
+            </section>
             <Services />
             {isMobile ? (
                 <>
@@ -43,7 +49,6 @@ const Home = () => {
                     <Footer />
                 </>
             )}
-            
         </div>
     );
 };
