@@ -17,8 +17,7 @@ const data = {
       title: "Send",
       subtext: "Confirm the details of your transaction, send and your recipient is expected to be credited shortly.",
     },
-    
-    ]
+  ]
 }
 
 export default data;
