@@ -6,7 +6,7 @@ import Step from "./Step"
 
 export default function Services(){
   return (
-    <div id = "wrapper" className= " bg-background  flex flex-col items-center px-7 md:px-24 py-7 md:pt-24 "> 
+    <section id = "wrapper" className= " bg-background  flex flex-col items-center px-7 md:px-24 py-7 md:pt-24 "> 
   
      <div id = "top" className = "flex flex-col md:flex-row gap-20 space-between w-full pb-32"> 
         <div id = "left" className = "w-full md:w-4/5">
@@ -38,7 +38,7 @@ export default function Services(){
         </div>
       </div>
    
-</div>
+</section>
 
   )
 }
