@@ -12,7 +12,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="min-h-[90%] w-screen flex flex-col items-center relative overflow-hidden">
+    <div className="min-h-[90vh] flex flex-col items-center relative overflow-hidden">
       <section className="flex-grow py-20 md:py-12 flex flex-col justify-center">
         <div className="flex flex-col gap-y-6 items-center justify-center md:p-10 text-center">
           <h2 className="font-brightFlicks font-medium text-secondary md:text-5xl ">
