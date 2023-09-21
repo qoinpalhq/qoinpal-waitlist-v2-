@@ -31,6 +31,7 @@ const HeroSection = () => {
               onChange={setInputValue}
               hasButton={true}
               buttonText="Join waitlist"
+              type = "email"
             />
           </div>
         </form>

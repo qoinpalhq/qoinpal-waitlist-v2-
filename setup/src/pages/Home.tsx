@@ -10,6 +10,7 @@ import MobileFooter from "../components/MobileFooter";
 import Services from "../components/Services/Services"
 import HeroSection from "../components/HeroSection"
 import Navbar from "../components/Navbar"
+import Modal from "../components/Modal/Modal"
 
 
 const Home = () => {

@@ -37,7 +37,7 @@ const Navbar = () => {
       </div>
 
       <div className="hidden md:block">
-        <Button text="Join Waitlist" onclickFunction={() => {}} />
+        <Button text="Join Waitlist" background = "secondary" color = "black" size = "small" onclickFunction={() => {}} />
       </div>
 
       {/* Mobile Menu Icon */}
@@ -71,7 +71,7 @@ const Navbar = () => {
           ))}
         </div>
         <div className="">
-          <Button text="Join Waitlist" onclickFunction={() => {}} />
+          <Button text="Join Waitlist" onclickFunction={() => {}}  background= "secondary" color = "black" size = "small"/>
         </div>
       </div>
     </nav>
