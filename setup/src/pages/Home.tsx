@@ -36,6 +36,7 @@ const Home = () => {
                 <HeroSection />
             </section>
             <Services />
+                <Modal />
             {isMobile ? (
                 <>
                     <MobileNewsLetter />
@@ -50,6 +51,7 @@ const Home = () => {
                     <FAQ />
                     <Congratulations />
                     <Footer />
+                
                 </>
             )}
         </div>
