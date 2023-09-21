@@ -42,7 +42,9 @@ const InputField: React.FC<InputFieldProps> = ({
       )}
       <input
         type= {type}
-        className="border border-gray-300 bg-transparent p-2 rounded-full w-full text-secondary mt-2 md:p-4 outline-none"
+        className="border border-gray-300 bg-transparent p-2 rounded-full w-full text-secondary mt-2 md:p-4 outline-none
+      placeholder-text-placeholder"
+        
         placeholder={placeholder}
         value={value}
         onChange={handleChange}

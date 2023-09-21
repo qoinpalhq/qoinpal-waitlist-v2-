@@ -16,8 +16,8 @@ const InputFields: React.FC<InputFieldsProps> = ({ onClose }) => {
 
   return (
     <div className="w-full">
-      <div id="name_and_phone" className="flex gap-6 mb-8">
-        <div className="w-1/2">
+      <div id="name_and_phone" className="flex flex-col md:flex-row gap-6 mb-6">
+        <div className="w-full md:w-1/2">
           <InputField
             id="name"
             label="Name"
@@ -29,7 +29,7 @@ const InputFields: React.FC<InputFieldsProps> = ({ onClose }) => {
           />
         </div>
 
-        <div className="w-1/2">
+        <div className="w-full md:w-1/2">
           <InputField
             id="phoneNumber"
             label="Phone Number"
@@ -53,7 +53,7 @@ const InputFields: React.FC<InputFieldsProps> = ({ onClose }) => {
         />
       </div>
 
-      <Button onClick={onClose} text = "Join waitlist"  className = "bg-accent "/>
+      <Button onClick={onClose} text = "Join waitlist" size = "large" color = "black" background = "accent"/>
     </div>
   );
 };

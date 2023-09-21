@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import QoinpalLogo from "../../assets/QoinpalLogo.svg";
-import Button from "./Buttons/Buttons";
+import Button from './Buttons/Buttons';
+import { useFormContext } from '/src/Context/FormContext';
 
 const Navbar = () => {
+  const { toggleModal } = useFormContext();
+
   const navigate = useNavigate();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -37,7 +40,7 @@ const Navbar = () => {
       </div>
 
       <div className="hidden md:block">
-        <Button text="Join Waitlist" background = "secondary" color = "black" size = "small" onclickFunction={() => {}} />
+        <Button text="Join Waitlist" size = "small" className = "bg-secondary" color = "black" onclickFunction={toggleModal} />
       </div>
 
       {/* Mobile Menu Icon */}
@@ -71,7 +74,7 @@ const Navbar = () => {
           ))}
         </div>
         <div className="">
-          <Button text="Join Waitlist" onclickFunction={() => {}}  background= "secondary" color = "black" size = "small"/>
+          <Button text="Join Waitlist" onclickFunction={toggleModal}  background= "secondary" color = "black" size = "small"/>
         </div>
       </div>
     </nav>

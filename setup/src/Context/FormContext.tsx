@@ -1,6 +1,6 @@
 import React, { createContext, useState, ReactNode, useContext } from 'react';
 
-// Define the shape of your context data here
+
 interface FormContextData {
   formData: {
     name: string;
@@ -8,7 +8,10 @@ interface FormContextData {
     emailAddress: string;
   };
   updateFormData: (data: Partial<FormContextData['formData']>) => void;
+  isOpen: boolean; 
+  toggleModal: () => void; 
 }
+
 
 export const FormContext = createContext<FormContextData | undefined>(undefined);
 
@@ -19,6 +22,8 @@ export const FormContextProvider: React.FC<{ children: ReactNode }> = ({ childre
     emailAddress: '',
   });
 
+  const [isOpen, setIsOpen] = useState(true); 
+  
   const updateFormData = (data: Partial<FormContextData['formData']>) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -26,8 +31,19 @@ export const FormContextProvider: React.FC<{ children: ReactNode }> = ({ childre
     }));
   };
 
+  const toggleModal = () => {
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  };
+
+  const contextValue: FormContextData = {
+    formData,
+    updateFormData,
+    isOpen,
+    toggleModal,
+  };
+
   return (
-    <FormContext.Provider value={{ formData, updateFormData }}>
+    <FormContext.Provider value={contextValue}>
       {children}
     </FormContext.Provider>
   );
