@@ -2,17 +2,20 @@ interface InputFieldProps {
   placeholder: string;
   value: string;
   onChange: (value: string) => void;
+  type: string;
   hasButton?: boolean;
   buttonText?: string;
   onSubmit?: () => void;
   isRequired?: boolean;
   label?: string;
+  
 }
 
 const InputField: React.FC<InputFieldProps> = ({
   placeholder,
   value,
   onChange,
+  type,
   hasButton = false,
   buttonText = "Submit",
   onSubmit,
@@ -32,14 +35,14 @@ const InputField: React.FC<InputFieldProps> = ({
   return (
     <div className="relative">
       {label && (
-        <label className="mb-2">
+        <label className="mb-1 font-medium">
           {label}
-          {isRequired && <span className="text-red-500">*</span>}
+          {isRequired && <span className="text-red-500 pl-1">*</span>}
         </label>
       )}
       <input
-        type="email"
-        className="border border-gray-300 bg-transparent p-2 rounded-full w-full text-secondary mt-4 md:p-4 outline-none"
+        type= {type}
+        className="border border-gray-300 bg-transparent p-2 rounded-full w-full text-secondary mt-2 md:p-4 outline-none"
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
