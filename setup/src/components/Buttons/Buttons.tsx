@@ -2,8 +2,8 @@ interface ButtonProps {
   text: string;
   onClickFunction: () => void;
   size: 'small' | 'large'; // Size can be 'small' or 'large'
-  background: string;
   color: string;
+  background?: string;
   className?: string;
 }
 
