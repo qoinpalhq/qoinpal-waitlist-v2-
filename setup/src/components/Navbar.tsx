@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import QoinpalLogo from "../../assets/QoinpalLogo.svg"
+import { Link, useNavigate } from "react-router-dom";
+import QoinpalLogo from "../../assets/QoinpalLogo.svg";
+import Button from "./Buttons/Buttons";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Toggle mobile menu
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
-    console.log("clicked")
-
   };
 
   // Define navigation items
@@ -19,10 +19,12 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="py-4 px-8 flex justify-between items-center md:px-20">
+    <nav className="h-[10vh] px-8 flex justify-between items-center relative md:px-20">
       {/* Brand Logo */}
       <div className="text-white text-xl font-bold">
-       <Link to="/"><img src={QoinpalLogo}/></Link>
+        <Link to="/">
+          <img src={QoinpalLogo} />
+        </Link>
       </div>
 
       {/* Navigation Items */}
@@ -35,19 +37,42 @@ const Navbar = () => {
       </div>
 
       <div className="hidden md:block">
-        <button className="bg-secondary px-4 py-2 rounded-full md:px-6">
-          Join Waitlist
-        </button>
+        <Button text="Join Waitlist" onclickFunction={() => {}} />
       </div>
 
       {/* Mobile Menu Icon */}
-      <div className="md:hidden">
+      <div className="absolute right-5 z-50 md:hidden">
         <button
           onClick={toggleMobileMenu}
           className="text-white text-2xl focus:outline-none"
         >
-          &#8801;
+          {isMobileMenuOpen ? "×" : "☰"}
         </button>
+      </div>
+
+      {/* Mobile View */}
+      <div
+        className={`transition-all ease-out duration-500 ${
+          isMobileMenuOpen
+            ? "top-0 translate-y-0 opacity-100"
+            : "-top-full opacity-0"
+        } fixed h-screen overflow-hidden gap-y-10 w-full left-0 flex justify-center items-center text-center flex-col bg-black z-30 md:hidden`}
+      >
+        <div className="flex flex-col gap-10">
+          {navItems.map((item, index) => (
+            <a
+              key={index}
+              href={item.url}
+              className="text-white text-lg hover:text-accent hover:font-bold"
+              onClick={()=>setMobileMenuOpen(false)}
+            >
+              {item.text}
+            </a>
+          ))}
+        </div>
+        <div className="">
+          <Button text="Join Waitlist" onclickFunction={() => {}} />
+        </div>
       </div>
     </nav>
   );
