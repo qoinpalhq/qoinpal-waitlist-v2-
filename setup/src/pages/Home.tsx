@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Congratulations from "../components/Congratulations";
-import FAQ from "../components/FAQ";
+// import Congratulations from "../components/Congratulations";
+import FAQ from "../components/FAQ/FAQ";
 import Footer from "../components/Footer";
-import MobileCongratulations from "../components/MobileCongratulations";
-import MobileFAQ from "../components/MobileFAQ";
+// import MobileCongratulations from "../components/MobileCongratulations";
+import MobileFAQ from "../components/FAQ/MobileFAQ";
 import MobileNewsLetter from "../components/MobileNewsLetter";
 import Newsletters from "../components/Newsletters";
 import MobileFooter from "../components/MobileFooter";
@@ -15,7 +15,6 @@ import Modal from "../components/Modal/Modal"
 
 const Home = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 428);
-
 
     useEffect(() => {
         const handleResize = () => {
@@ -30,7 +29,7 @@ const Home = () => {
     }, []);
 
     return (
-        <div>
+        <div className="">
             <section className="min-h-screen bg-black">
                 <Navbar />
                 <HeroSection />
@@ -41,17 +40,16 @@ const Home = () => {
                 <>
                     <MobileNewsLetter />
                     <MobileFAQ />
-                    <MobileCongratulations />
                     <MobileFooter />
+                    {/* <MobileCongratulations /> */}
                 </>
             ) : (
                 <>
                     
                     <Newsletters />
                     <FAQ />
-                    <Congratulations />
                     <Footer />
-                
+                    {/* <Congratulations /> */}
                 </>
             )}
         </div>
