@@ -4,7 +4,7 @@ import FAQ from "../components/FAQ/FAQ";
 import Footer from "../components/Footer";
 // import MobileCongratulations from "../components/MobileCongratulations";
 import MobileFAQ from "../components/FAQ/MobileFAQ";
-import MobileNewsLetter from "../components/MobileNewsLetter";
+
 import Newsletters from "../components/Newsletters";
 import MobileFooter from "../components/MobileFooter";
 import Services from "../components/Services/Services"
@@ -35,18 +35,19 @@ const Home = () => {
                 <HeroSection />
             </section>
             <Services />
+              
+            <Newsletters  />
                 <Modal />
             {isMobile ? (
                 <>
-                    <MobileNewsLetter />
+                    
                     <MobileFAQ />
                     <MobileFooter />
                     {/* <MobileCongratulations /> */}
                 </>
             ) : (
                 <>
-                    
-                    <Newsletters />
+                  
                     <FAQ />
                     <Footer />
                     {/* <Congratulations /> */}

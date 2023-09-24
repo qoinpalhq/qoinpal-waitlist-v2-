@@ -4,22 +4,22 @@ import icon from '/assets/add.png';
 import { useFormContext } from '/src/Context/FormContext';
 const Modal: FC = () => {
   const { isOpen, toggleModal } = useFormContext();
+ 
+ const display = `transform ${
+  isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+} transition-transform ease-in-out duration-300`;
 
-  if (!isOpen) return null;
+  
 
   return (
-    <div id="overlay" className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+  <div id="overlay" className={`fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
       <div
         id="wrapper"
         role="dialog"
         aria-modal="true"
         aria-hidden="true"
-        className="
-          bg-background rounded-[20px]
-          px-[5%] py-[10%] md:p-20
-          w-[80%] grid place-items-center 
-          relative
-        "
+        className={`bg-background rounded-[20px] px-[5%] py-[10%] md:p-20 w-[80%] grid place-items-center relative ${display}`}
+
       >
         <div id="icon" className="absolute top-4 md:top-10 right-4 md:right-10">
           <img src={icon} alt="close" width="100%" onClick={toggleModal} /> 
