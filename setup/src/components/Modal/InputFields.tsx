@@ -2,13 +2,10 @@ import React from 'react';
 import InputField from '../FormFields/InputField';
 import Button from '../Buttons/Buttons';
 import { useFormContext } from '../../Context/FormContext';
+import {useNavigate} from "react-router"
 
-interface InputFieldsProps {
-  onClose: () => void;
-}
-
-const InputFields: React.FC<InputFieldsProps> = ({ onClose }) => {
-  const { formData, setFormData,  } = useFormContext();
+const InputFields: React.FC<InputFieldsProps> = () => {
+  const { formData, setFormData,toggleModal} = useFormContext();
 
 const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -17,7 +14,14 @@ const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
       [name]: value,
     });
   };
-
+  const navigate = useNavigate();
+const handleSubmit = () => {
+  toggleModal();
+  //some Api codd
+  navigate("/success")
+  
+  
+}
 
   return (
     <div className="w-full">
@@ -64,7 +68,7 @@ color = "black"
         />
       </div>
 
-      <Button onClick={onClose} text = "Join waitlist" size = "large" color = "black" background = "accent"/>
+      <Button onClickFunction={handleSubmit} text = "Join waitlist" size = "large" color = "black" background = "accent"/>
     </div>
   );
 };
