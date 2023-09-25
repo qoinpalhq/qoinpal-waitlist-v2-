@@ -1,15 +1,9 @@
-import { useState } from "react";
 import HeroImage from "../../assets/HeroImage.svg";
-import InputField from "./FormFields/InputField";
+import EnterEmail from "/src/components/EnterEmail"
 
 const HeroSection = () => {
-  const [inputValue, setInputValue] = useState("");
-
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    setInputValue("");
-    console.log("Submitted:", inputValue);
-  };
+  
+  
 
   return (
     <div className="min-h-[90vh] flex flex-col items-center relative overflow-hidden">
@@ -22,19 +16,8 @@ const HeroSection = () => {
             Be part of the first to enjoy the convenience of seamless <br />
             crypto to fiat transactions on our secure and reliable platform
           </p>
-        </div>
-        <form onSubmit={handleSubmit}>
-          <div className="">
-            <InputField
-              placeholder="Enter your email address"
-              value={inputValue}
-              onChange={setInputValue}
-              hasButton={true}
-              buttonText="Join waitlist"
-              type = "email"
-            />
-          </div>
-        </form>
+        </div >
+        <EnterEmail placeholder = "Enter your Email Address" buttonText = "Submit"/> 
       </section>
       <section className="w-screen px-10 flex justify-center">
         <img src={HeroImage} className="" alt="Hero Image" />

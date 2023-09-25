@@ -3,12 +3,13 @@ interface InputFieldProps {
   value: string;
   onChange: (value: string) => void;
   type: string;
+  name: string;
   hasButton?: boolean;
   buttonText?: string;
   onSubmit?: () => void;
   isRequired?: boolean;
   label?: string;
-  
+  color?: string; // Add a textColor prop
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -16,14 +17,16 @@ const InputField: React.FC<InputFieldProps> = ({
   value,
   onChange,
   type,
+  name,
   hasButton = false,
   buttonText = "Submit",
   onSubmit,
   isRequired = false,
   label,
+  color = 'secondary', 
 }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value);
+    onChange(event);
   };
 
   const handleButtonClick = () => {
@@ -41,10 +44,9 @@ const InputField: React.FC<InputFieldProps> = ({
         </label>
       )}
       <input
-        type= {type}
-        className="border border-gray-300 bg-transparent p-2 rounded-full w-full text-secondary mt-2 md:p-4 outline-none
-      placeholder-text-placeholder"
-        
+        type={type}
+        name={name}
+        className={`border border-gray-300 bg-transparent p-2 rounded-full w-full text-${color} mt-2 md:p-4 outline-none placeholder-text-placeholder`}
         placeholder={placeholder}
         value={value}
         onChange={handleChange}

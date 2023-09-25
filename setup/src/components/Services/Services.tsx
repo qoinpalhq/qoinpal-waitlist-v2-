@@ -1,11 +1,13 @@
 import Image1 from "/assets/send_receive_fast.png";
 import Image2 from "/assets/Transaction.png";
+import Button from "/src/components/Buttons/Buttons"
 import data from "./data";
 import Step from "./Step"
 import { JSX } from "react/jsx-runtime";
-
+import {useFormContext} from "/src/Context/FormContext"
 
 export default function Services() {
+  const {toggleModal} = useFormContext()
   return (
     <section id="wrapper" className="bg-background  flex flex-col items-center px-7 md:px-15 lg:px-24 py-7 md:py-24 ">
 
@@ -14,9 +16,16 @@ export default function Services() {
           <h2 className="font-medium"> {data.title}
           </h2>
           <p className="subtitle font-light pt-6 pb-7">{data.body}</p>
-          <button className="bg-primary text-white px-8 py-3 rounded-full">
-            Sign up on the waitlist
-          </button>
+          <Button
+          text= "Sign up on the waitlist"
+          color = "white"
+          background = "black"
+          size = "medium"
+          onClickFunction = {toggleModal}
+          
+          
+          />
+          
         </div>
 
 

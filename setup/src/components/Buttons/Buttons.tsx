@@ -7,9 +7,10 @@ interface ButtonProps {
   className?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ text, onClickFunction, size, background, color, className }) => {
+const Button: React.FC<ButtonProps> = ({ text, onClickFunction, size, background = "primary", color, className }) => {
   // Determine the width class based on the size prop
-  const widthClass = size === 'small' ? 'w-40' : 'w-full';
+  const widthClass = size === 'small' ? 'w-40'
+                     : size === 'medium'?  'w-60' : 'w-full';
 
   const buttonClasses = `flex items-center justify-center border rounded-3xl bg-${background} ${widthClass} text-${color} p-3 ${
     className || ''

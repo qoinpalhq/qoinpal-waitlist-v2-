@@ -2,17 +2,26 @@ import React from 'react';
 import InputField from '../FormFields/InputField';
 import Button from '../Buttons/Buttons';
 import { useFormContext } from '../../Context/FormContext';
+import {useNavigate} from "react-router"
 
-interface InputFieldsProps {
-  onClose: () => void;
-}
+const InputFields: React.FC<InputFieldsProps> = () => {
+  const { formData, setFormData,toggleModal} = useFormContext();
 
-const InputFields: React.FC<InputFieldsProps> = ({ onClose }) => {
-  const { formData, updateFormData } = useFormContext();
-
-  const handleInputChange = (field: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    updateFormData({ [field]: event.target.value });
+const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
+  const navigate = useNavigate();
+const handleSubmit = () => {
+  toggleModal();
+  //some Api codd
+  navigate("/success")
+  
+  
+}
 
   return (
     <div className="w-full">
@@ -21,9 +30,11 @@ const InputFields: React.FC<InputFieldsProps> = ({ onClose }) => {
           <InputField
             id="name"
             label="Name"
+            name = "name"
             placeholder="Your name"
+            color = "black"
             value={formData.name}
-            onChange={handleInputChange('name')}
+            onChange={handleInputChange}
            type = "text"
             isRequired 
           />
@@ -33,9 +44,11 @@ const InputFields: React.FC<InputFieldsProps> = ({ onClose }) => {
           <InputField
             id="phoneNumber"
             label="Phone Number"
+            name = "phoneNumber"
+            color = "black"
             placeholder="Your phone number"
             value={formData.phoneNumber}
-            onChange={handleInputChange('phoneNumber')}
+            onChange={handleInputChange}
             type = "text"
           />
         </div>
@@ -46,14 +59,16 @@ const InputFields: React.FC<InputFieldsProps> = ({ onClose }) => {
           id="emailAddress"
           label="Email Address"
           placeholder="Name@email.com"
+color = "black"
           value={formData.emailAddress}
-          onChange={handleInputChange('emailAddress')}
+          onChange={handleInputChange}
           isRequired
+          name = "emailAddress"
           type = "email"
         />
       </div>
 
-      <Button onClick={onClose} text = "Join waitlist" size = "large" color = "black" background = "accent"/>
+      <Button onClickFunction={handleSubmit} text = "Join waitlist" size = "large" color = "black" background = "accent"/>
     </div>
   );
 };
