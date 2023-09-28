@@ -38,17 +38,17 @@ const Home = () => {
               
             <Newsletters  />
                 <Modal />
+                    <FAQ />
             {isMobile ? (
                 <>
                     
-                    <MobileFAQ />
+                    
                     <MobileFooter />
                     {/* <MobileCongratulations /> */}
                 </>
             ) : (
                 <>
                   
-                    <FAQ />
                     <Footer />
                     {/* <Congratulations /> */}
                 </>

@@ -12,7 +12,7 @@ export default function Services() {
     <section id="wrapper" className="bg-background  flex flex-col items-center px-7 md:px-15 lg:px-24 py-7 md:py-24 ">
 
       <div id="top" className="flex flex-col md:flex-row gap-20 space-between w-full pb-24 md:pb-32">
-        <div id="left" className="w-full md:w-4/5">
+        <div id="left" className="w-full md:w-3/5">
           <h2 className="font-medium"> {data.title}
           </h2>
           <p className="subtitle font-light pt-6 pb-7">{data.body}</p>
