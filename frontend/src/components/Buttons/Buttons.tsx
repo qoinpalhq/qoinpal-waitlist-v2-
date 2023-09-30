@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 interface ButtonProps {
   text: string;
   onClickFunction: () => void;
@@ -17,9 +19,13 @@ const Button: React.FC<ButtonProps> = ({ text, onClickFunction, size, background
   }`;
 
   return (
-    <button className={buttonClasses} onClick={onClickFunction}>
+    <motion.button
+      className={buttonClasses}
+      onClick={onClickFunction}
+      whileHover={{ scale: 1.1 }}
+    >
       {text}
-    </button>
+    </motion.button>
   );
 };
 

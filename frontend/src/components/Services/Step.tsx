@@ -1,3 +1,6 @@
+import { delay, motion } from "framer-motion";
+import { fadeIn, slideIn } from "../../utils/motion";
+
 type Props = {
   num: string;
   title: string;
@@ -6,7 +9,7 @@ type Props = {
 }
 
 const Step:React.Fc <Props> = ({num,title,end,subtext}) => (
-  <div className = {`flex gap-5 md:gap-7 items-center relative py-2 ${!end && 'md:py-4 mb-10 md:mb-20'}`}> 
+  <motion.div className = {`flex gap-5 md:gap-7 items-center relative py-2 ${!end && 'md:py-4 mb-10 md:mb-20'}`} initial="hidden" whileInView="show" variants={fadeIn("spring",1,2)}> 
   
      <span className = "color-dark-gray font-normal sm:text-xs md:text-sm">{num} </span>
     
@@ -21,7 +24,7 @@ const Step:React.Fc <Props> = ({num,title,end,subtext}) => (
     )
     }
 
-  </div>
+  </motion.div>
 
 )
 
