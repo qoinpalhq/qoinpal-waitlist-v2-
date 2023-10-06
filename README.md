@@ -22,3 +22,10 @@
  ###  get all users details 
  #### GET   localhost://4000/api/waitlist
 
+## Database Type
+### Postgres
+#### You can manually set your postgres configuration in .env file if you have postgresql installed on your machine.
+
+## Request body parameters
+### Name and Email is required
+
