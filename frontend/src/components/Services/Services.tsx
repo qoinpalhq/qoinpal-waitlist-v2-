@@ -70,7 +70,7 @@ export default function Services() {
 
         <div id="right">
           {data.steps.map((x: JSX.IntrinsicAttributes, index: number) => (
-            <Step {...x} end={index === data.steps.length - 1} />
+            <Step key = {index} {...x} end={index === data.steps.length - 1} />
           ))}
         </div>
       </div>

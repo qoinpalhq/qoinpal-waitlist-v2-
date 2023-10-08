@@ -25,6 +25,7 @@ email: inputValue,
 
   try {
   setIsLoading(true);
+  console.log('loading..')
     const response = await axios.post(createWithEmailUrl, postData, {
       headers: {
         'Content-Type': 'application/json', 
