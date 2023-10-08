@@ -10,6 +10,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func Api() error {
@@ -27,6 +28,15 @@ func Api() error {
 	// Create an app using Fiber framework
 	app := fiber.New()
 
+
+	// Initialize cors middleware default config to allow all application access 
+	//app.Use(cors.New())
+
+	// Initialize cors middleware with specific allowed origins
+	app.Use(cors.New(cors.Config{
+    AllowOrigins: "http://localhost:5173",
+	AllowHeaders:  "Origin, Content-Type, Accept",
+	}))
 	// add basic middleware
 	app.Use(logger.New())
 	app.Use(recover.New())
