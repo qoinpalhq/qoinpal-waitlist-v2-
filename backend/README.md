@@ -8,7 +8,19 @@
 ### run "go run main.go"
 
 ## Api endpoint to query
-###   localhost://4000/api/waitlist
+
+###    Create a user with all the fields(name, email and password)
+####   POST  localhost://4000/api/waitlist
+
+###    create a user with ordinary email
+####   POST  localhost://4000/api/waitlist/user
+
+###    update user detail as email is unique and validation is done if email already exist
+ ####  PUT  localhost://4000/api/waitlist/user
+
+
+ ###  get all users details 
+ #### GET   localhost://4000/api/waitlist
 
 ## Database Type
 ### Postgres
