@@ -2,26 +2,57 @@ import React from 'react';
 import InputField from '../FormFields/InputField';
 import Button from '../Buttons/Buttons';
 import { useFormContext } from '../../Context/FormContext';
-import {useNavigate} from "react-router"
+import {useNavigate} from "react-router";
+import axios from "axios";
+import {updateUserUrl,  createWithFormUrl } from "/src/utils/constants";
 
 const InputFields: React.FC<InputFieldsProps> = () => {
-  const { formData, setFormData,toggleModal} = useFormContext();
 
-const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
+const {  toggleModal,handleInputChange, hasSubmittedEmail, setIsLoading, formData} = useFormContext();
+
+    const navigate = useNavigate();
+    
+    
+    
+const handleSubmit = async (event: React.FormEvent) => {
+  event.preventDefault();
+  
+
+  try {
+  setIsLoading(true);
+  let response;
+  if(hasSubmittedEmail){
+    response = await axios.post(createWithFormUrl, formData, {
+      headers: {
+        'Content-Type': 'application/json', 
+      },
     });
-  };
-  const navigate = useNavigate();
-const handleSubmit = () => {
-  toggleModal();
-  //some Api codd
-  navigate("/success")
+  }
+  if(!hasSubmittedEmail){
+response = await axios.put(updateUserUrl, formData, {
+      headers: {
+        'Content-Type': 'application/json', 
+      },
+    });
+  }
+    
+    toggleModal();
+  setInputValue('');
+  navigate("/success");
+  
+console.log('POST request successful:', response.data);
+  
+  } catch (error) {
+    console.error('Error:', error);
+  }finally{
+    setIsLoading(false)
+  }
+
   
   
-}
+};
+
+
 
   return (
     <div className="w-full">
@@ -60,7 +91,7 @@ const handleSubmit = () => {
           label="Email Address"
           placeholder="Name@email.com"
 color = "black"
-          value={formData.emailAddress}
+          value={formData.email}
           onChange={handleInputChange}
           isRequired
           name = "emailAddress"

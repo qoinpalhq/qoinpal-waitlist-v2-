@@ -1,45 +1,40 @@
-import React, { createContext, useState, ReactNode, useContext } from 'react';
+import React, { createContext, useState, ReactNode, useContext, ChangeEvent, Dispatch, SetStateAction } from 'react';
 
-//types
+// Types
 interface FormContextData {
   formData: {
     name: string;
     phoneNumber: string;
     emailAddress: string;
   };
-  
-  isOpen: boolean; 
-  toggleModal: () => void; 
+  isOpen: boolean;
+  hasSubmittedEmail: boolean;
+  loading: boolean;
+  toggleModal: () => void;
   handleInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
- 
+  setHasSubmittedEmail: Dispatch<SetStateAction<boolean>>; 
+  setIsLoading: Dispatch<SetStateAction<boolean>>; 
 }
 
-
-
-
-
-
-//context
+// Context
 export const FormContext = createContext<FormContextData | undefined>(undefined);
 
 export const FormContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  
-  //state
+  // State
   const [formData, setFormData] = useState<FormContextData['formData']>({
     name: '',
+    email: '',
     phoneNumber: '',
-    emailAddress: '',
   });
-  
-  const [isOpen, setIsOpen] = useState(false); 
-  
-  
+  const [isOpen, setIsOpen] = useState(false);
+  const [loading, setIsLoading] = useState(false);
+  const [hasSubmittedEmail, setHasSubmittedEmail] = useState(false);
 
-//functions
+  // Functions
   const toggleModal = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
-  
+
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData({
@@ -47,27 +42,22 @@ export const FormContextProvider: React.FC<{ children: ReactNode }> = ({ childre
       [name]: value,
     });
   };
+  
+  
 
-// const handleSubmit = (event: React.FormEvent, func: Function) => {
-//     event.preventDefault();
-//     func()
-  
-//   };
-  
-  
-  
-  //value
+  // Value
   const contextValue: FormContextData = {
     formData,
-    setFormData,
     isOpen,
     toggleModal,
     handleInputChange,
-  
+    hasSubmittedEmail,
+    setHasSubmittedEmail,
+    loading,
+    setIsLoading,
   };
 
-  
-  //return
+  // Return
   return (
     <FormContext.Provider value={contextValue}>
       {children}
@@ -75,11 +65,7 @@ export const FormContextProvider: React.FC<{ children: ReactNode }> = ({ childre
   );
 };
 
-
-
-
-
-//hook
+// Hook
 export const useFormContext = (): FormContextData => {
   const context = useContext(FormContext);
 
