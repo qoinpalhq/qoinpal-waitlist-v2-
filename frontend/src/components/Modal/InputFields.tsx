@@ -4,11 +4,11 @@ import Button from '../Buttons/Buttons';
 import { useFormContext } from '../../Context/FormContext';
 import {useNavigate} from "react-router";
 import axios from "axios";
-import {updateUserUrl,  createWithFormUrl } from "/src/utils/constants";
+import {updateUserUrl,  createWithFormUrl , formObj} from "/src/utils/constants";
 
 const InputFields: React.FC<InputFieldsProps> = () => {
 
-const {  toggleModal,handleInputChange, hasSubmittedEmail, setIsLoading, formData} = useFormContext();
+const {  toggleModal,handleInputChange, hasSubmittedEmail, setIsLoading,setFormData, formData} = useFormContext();
 
     const navigate = useNavigate();
     
@@ -37,7 +37,7 @@ response = await axios.put(updateUserUrl, formData, {
   }
     
     toggleModal();
-  setInputValue('');
+  setFormData(formObj);
   navigate("/success");
   
 console.log('POST request successful:', response.data);
@@ -94,7 +94,7 @@ color = "black"
           value={formData.email}
           onChange={handleInputChange}
           isRequired
-          name = "emailAddress"
+          name = "email"
           type = "email"
         />
       </div>
