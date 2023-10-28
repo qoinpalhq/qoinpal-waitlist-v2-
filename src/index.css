@@ -1,0 +1,66 @@
+/* Import Tailwind CSS */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@font-face {
+  font-family: "Bright-Flicks";
+  src: url(../assets/fonts/brightflicks-owz00.otf);
+}
+
+/* Your custom styles go here */
+/* For desktop */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3.625rem;
+  }
+  h2 {
+    font-size: 2.25rem;
+    
+  }
+  h4 {
+    font-size: 1.25rem;
+  }
+  .subtitle {
+    font-size: 1.125rem;
+  }
+  .large-button {
+    font-size: 1rem;
+  }
+  body,
+  .placeholder {
+    font-size: 1rem;
+  }
+  .small-button {
+    font-size: 0.875rem;
+  }
+  .tiny {
+    font-size: 0.75rem;
+  }
+}
+
+/* For mobile */
+@media (max-width: 767px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+  h2 {
+    font-size: 1.25rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  .subtitle {
+    font-size: 0.875rem;
+  }
+  .large-button {
+    font-size: 0.875rem;
+  }
+  body,
+  .placeholder {
+    font-size: 0.75rem;
+  }
+  .tiny {
+    font-size: 0.5rem;
+  }
+}
