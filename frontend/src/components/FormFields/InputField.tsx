@@ -1,7 +1,8 @@
 interface InputFieldProps {
+  id?: string;
   placeholder: string;
   value: string;
-  onChange: (value: string) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type: string;
   name: string;
   hasButton?: boolean;
@@ -13,6 +14,7 @@ interface InputFieldProps {
 }
 
 const InputField: React.FC<InputFieldProps> = ({
+id,
   placeholder,
   value,
   onChange,
@@ -23,7 +25,7 @@ const InputField: React.FC<InputFieldProps> = ({
   onSubmit,
   isRequired = false,
   label,
-  color = 'secondary', 
+  color = "secondary",
 }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event);
@@ -44,6 +46,7 @@ const InputField: React.FC<InputFieldProps> = ({
         </label>
       )}
       <input
+      id = {id}
         type={type}
         name={name}
         className={`border border-gray-300 bg-transparent p-2 rounded-full w-full text-${color} mt-2 md:p-4 outline-none placeholder-text-placeholder`}

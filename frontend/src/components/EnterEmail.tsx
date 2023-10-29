@@ -11,8 +11,12 @@ interface Props {
 
 const EnterEmail: React.FC<Props> = ({ buttonText, placeholder }) => {
   const [inputValue, setInputValue] = useState("");
-  const { toggleModal, handleInputChange, setHasSubmittedEmail, setIsLoading } =
-    useFormContext();
+  const {
+    // toggleModal,
+    handleInputChange,
+    // setHasSubmittedEmail,
+    setIsLoading,
+  } = useFormContext();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -20,7 +24,6 @@ const EnterEmail: React.FC<Props> = ({ buttonText, placeholder }) => {
       email: inputValue,
     };
 
-<<<<<<< HEAD
     try {
       setIsLoading(true);
       console.log(createWithEmailUrl, postData);
@@ -28,27 +31,6 @@ const EnterEmail: React.FC<Props> = ({ buttonText, placeholder }) => {
       // toggleModal();
       // setInputValue("");
       // setHasSubmittedEmail(true);
-=======
-  try {
-  setIsLoading(true);
-  console.log('loading..')
-    const response = await axios.post(createWithEmailUrl, postData, {
-      headers: {
-        'Content-Type': 'application/json', 
-      },
-    });
-    toggleModal();
-  setInputValue('');
-  setHasSubmittedEmail(true);
-  
-console.log('POST request successful:', response.data);
-  
-  } catch (error) {
-    console.error('Error:', error);
-  }finally{
-    setIsLoading(false)
-  }
->>>>>>> 73e00bce71c329dcb534da2bf0d211f9d6f7af4b
 
       console.log("POST request successful:", response.data);
     } catch (error) {
