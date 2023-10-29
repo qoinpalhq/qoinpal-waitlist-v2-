@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import InputFields from './InputFields';
+import Form from './Form';
 import icon from '/assets/add.png';
 import { useFormContext } from '/src/Context/FormContext';
 const Modal: FC = () => {
@@ -31,7 +31,7 @@ const Modal: FC = () => {
           </p>
         </div>
 
-        <InputFields />
+        <Form />
       </div>
     </div>
   );

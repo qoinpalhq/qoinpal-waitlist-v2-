@@ -1,10 +1,10 @@
 import React from "react";
 import InputField from "../FormFields/InputField";
 import Button from "../Buttons/Buttons";
-import { useFormContext } from "src/Context/FormContext";
+import { useFormContext } from "@/Context/FormContext";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import { updateUserUrl, createWithFormUrl, formObj } from "src/utils/constants";
+import { updateUserUrl, createWithFormUrl, formObj } from "@/utils/constants";
 
 const InputFields: React.FC = () => {
   const {

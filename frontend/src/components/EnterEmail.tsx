@@ -1,7 +1,7 @@
 import { useState } from "react";
-import InputField from "../components/FormFields/InputField";
-import { useFormContext } from "../Context/FormContext";
-import { createWithEmailUrl } from "../utils/constants";
+import InputField from "@/components/FormFields/InputField";
+import { useFormContext } from "@/Context/FormContext";
+import { createWithEmailUrl } from "@/utils/constants";
 import axios from "axios";
 
 interface Props {
@@ -26,7 +26,7 @@ const EnterEmail: React.FC<Props> = ({ buttonText, placeholder }) => {
 
     try {
       setIsLoading(true);
-      console.log(createWithEmailUrl, postData);
+  
       const response = await axios.post(createWithEmailUrl, postData);
       // toggleModal();
       // setInputValue("");
