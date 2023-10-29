@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 interface ButtonProps {
   text: string;
-  onClickFunction: () => void;
+  onClickFunction: (() => void) | ((event: React.FormEvent) => Promise<void>);
   size: "small" | "large"; // Size can be 'small' or 'large'
   color: string;
   background?: string;

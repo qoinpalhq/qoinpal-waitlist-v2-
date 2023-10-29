@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import HeroImage from "../../assets/HeroImage.svg";
-import EnterEmail from "/src/components/EnterEmail";
+import EnterEmail from "@/components/EnterEmail";
 import { fadeIn, slideIn } from "../utils/motion";
 const HeroSection = () => {
   return (

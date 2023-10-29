@@ -1,11 +1,7 @@
-import { ClipLoader } from 'react-spinners';
-
-
+// import { BounceLoader } from "react-spinners";
 
 const Loader = () => {
-    return (
-       <BounceLoader />
-    );
+  return <h1>loading</h1>;
 };
 
 export default Loader;

@@ -12,9 +12,9 @@ interface Props {
 const EnterEmail: React.FC<Props> = ({ buttonText, placeholder }) => {
   const [inputValue, setInputValue] = useState("");
   const {
-    // toggleModal,
+    //toggleModal,
     handleInputChange,
-    // setHasSubmittedEmail,
+    //setHasSubmittedEmail,
     setIsLoading,
   } = useFormContext();
 
@@ -26,7 +26,7 @@ const EnterEmail: React.FC<Props> = ({ buttonText, placeholder }) => {
 
     try {
       setIsLoading(true);
-  
+
       const response = await axios.post(createWithEmailUrl, postData);
       // toggleModal();
       // setInputValue("");
@@ -34,7 +34,13 @@ const EnterEmail: React.FC<Props> = ({ buttonText, placeholder }) => {
 
       console.log("POST request successful:", response.data);
     } catch (error) {
-      console.error("Error:", error);
+      if (error?.response?.data?.error) {
+        console.log("Error:", error.response);
+        // Display the error message to the user as needed
+      } else {
+        console.log("An unexpected error occurred:", error);
+        // Handle other types of errors
+      }
     } finally {
       setIsLoading(false);
     }
