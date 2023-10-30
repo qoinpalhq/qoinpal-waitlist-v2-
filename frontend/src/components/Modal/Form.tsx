@@ -1,7 +1,7 @@
 import React from "react";
 import InputField from "../FormFields/InputField";
 import Button from "../Buttons/Buttons";
-import { useFormContext } from "@/Context/FormContext";
+import { useFormContext } from "@/Context/useFormContext";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { updateUserUrl, createWithFormUrl, formObj } from "@/utils/constants";

@@ -1,30 +1,6 @@
-import React, {
-  createContext,
-  useState,
-  ReactNode,
-  useContext,
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-} from "react";
+import React, { createContext, useState, ReactNode, ChangeEvent } from "react";
 import { formObj } from "@/utils/constants";
-
-// Types
-interface FormContextData {
-  formData: {
-    name: string;
-    phoneNumber: string;
-    email: string;
-  };
-  isOpen: boolean;
-  hasSubmittedEmail: boolean;
-  loading: boolean;
-  toggleModal: () => void;
-  handleInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  setHasSubmittedEmail: Dispatch<SetStateAction<boolean>>;
-  setIsLoading: Dispatch<SetStateAction<boolean>>;
-  setFormData: Dispatch<SetStateAction<FormContextData["formData"]>>; // Add this line
-}
+import { FormContextData } from "./FormContext.d.tsx";
 
 // Context
 export const FormContext = createContext<FormContextData | undefined>(
@@ -38,7 +14,11 @@ export const FormContextProvider: React.FC<{ children: ReactNode }> = ({
   const [formData, setFormData] =
     useState<FormContextData["formData"]>(formObj);
   const [isOpen, setIsOpen] = useState(false);
-  const [loading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<FormContextData["error"]>({
+    name: "",
+    email: "",
+  });
   const [hasSubmittedEmail, setHasSubmittedEmail] = useState(false);
 
   // Functions
@@ -57,13 +37,15 @@ export const FormContextProvider: React.FC<{ children: ReactNode }> = ({
   // Value
   const contextValue: FormContextData = {
     formData,
+    error,
+    setError,
     isOpen,
     toggleModal,
     handleInputChange,
     hasSubmittedEmail,
     setHasSubmittedEmail,
     setFormData,
-    loading,
+    isLoading,
     setIsLoading,
   };
 
@@ -71,15 +53,4 @@ export const FormContextProvider: React.FC<{ children: ReactNode }> = ({
   return (
     <FormContext.Provider value={contextValue}>{children}</FormContext.Provider>
   );
-};
-
-// Hook
-export const useFormContext = (): FormContextData => {
-  const context = useContext(FormContext);
-
-  if (!context) {
-    throw new Error("useFormContext must be used within a FormContextProvider");
-  }
-
-  return context;
 };

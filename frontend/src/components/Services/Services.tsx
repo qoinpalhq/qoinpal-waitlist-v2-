@@ -1,18 +1,16 @@
 import Image1 from "/assets/send_receive_fast.png";
 import Image2 from "/assets/Transact.svg";
 import offerImage from "/assets/offerImage.svg";
-import Button from "/src/components/Buttons/Buttons"
+import Button from "@/components/Buttons/Buttons";
 import data from "./data";
-import Step from "./Step"
+import Step from "./Step";
 import { JSX } from "react/jsx-runtime";
-import {useFormContext} from "/src/Context/FormContext";
+import { useFormContext } from "@/Context/useFormContext";
 import { motion } from "framer-motion";
 import { fadeIn, slideIn } from "../../utils/motion";
 
 export default function Services() {
- 
-
-  const {toggleModal} = useFormContext()
+  const { toggleModal } = useFormContext();
   return (
     <section
       id="wrapper"
@@ -36,7 +34,7 @@ export default function Services() {
             text="Sign up on the waitlist"
             color="white"
             background="black"
-            size="medium"
+            size="large"
             onClickFunction={toggleModal}
           />
         </motion.div>
@@ -57,20 +55,15 @@ export default function Services() {
 
       <div
         id="bottom"
-        className="flex flex-col flex-col-reverse md:flex-row space-between gap-14 md:gap-20"
+        className="flex flex-col-reverse md:flex-row space-between gap-14 md:gap-20"
       >
-        <motion.div
-          id="left"
-          className=""
-          initial="hidden"
-          whileInView="show"
-        >
+        <motion.div id="left" className="" initial="hidden" whileInView="show">
           <img src={Image2} alt="transaction" className="" />
         </motion.div>
 
         <div id="right">
           {data.steps.map((x: JSX.IntrinsicAttributes, index: number) => (
-            <Step key = {index} {...x} end={index === data.steps.length - 1} />
+            <Step key={index} {...x} end={index === data.steps.length - 1} />
           ))}
         </div>
       </div>

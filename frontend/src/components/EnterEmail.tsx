@@ -1,6 +1,6 @@
 import { useState } from "react";
 import InputField from "@/components/FormFields/InputField";
-import { useFormContext } from "@/Context/FormContext";
+import { useFormContext } from "@/Context/useFormContext";
 import { createWithEmailUrl } from "@/utils/constants";
 import axios from "axios";
 
@@ -16,6 +16,8 @@ const EnterEmail: React.FC<Props> = ({ buttonText, placeholder }) => {
     handleInputChange,
     //setHasSubmittedEmail,
     setIsLoading,
+    error,
+    setError,
   } = useFormContext();
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -33,13 +35,17 @@ const EnterEmail: React.FC<Props> = ({ buttonText, placeholder }) => {
       // setHasSubmittedEmail(true);
 
       console.log("POST request successful:", response.data);
+      setError((prev) => ({ ...prev, email: "" }));
     } catch (error) {
       if (error?.response?.data?.error) {
-        console.log("Error:", error.response);
-        // Display the error message to the user as needed
+        setError((prev) => ({ ...prev, email: error.response.data.error }));
+        console.log("Error:", error.response.data.error);
       } else {
         console.log("An unexpected error occurred:", error);
-        // Handle other types of errors
+        setError((prev) => ({
+          ...prev,
+          email: "An unexpected error occurred",
+        }));
       }
     } finally {
       setIsLoading(false);
@@ -60,6 +66,7 @@ const EnterEmail: React.FC<Props> = ({ buttonText, placeholder }) => {
           buttonText={buttonText}
           type="email"
           name="email"
+          error={error.email}
         />
       </div>
     </form>

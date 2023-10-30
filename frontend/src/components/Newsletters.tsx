@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import EnterEmail from "/src/components/EnterEmail";
+import EnterEmail from "@/components/EnterEmail";
 import { fadeIn } from "../utils/motion";
 
 const Newsletters = () => {
   return (
     <div className="flex justify-center px-7 md:px-24  py-7 md:py-12">
-      <div className="flex border flex-col w-full md: w-[90%] bg-[#111111]  h-96 rounded-3xl items-center justify-center">
+      <div className="flex border flex-col w-full md:w-[90%] bg-[#111111]  h-96 rounded-3xl items-center justify-center">
         <div className="p-4">
           <motion.div
             className="flex flex-col justify-center items-center mb-10"
