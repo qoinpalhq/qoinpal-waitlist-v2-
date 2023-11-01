@@ -11,14 +11,8 @@ interface Props {
 
 const EnterEmail: React.FC<Props> = ({ buttonText, placeholder }) => {
   const [inputValue, setInputValue] = useState("");
-  const {
-    //toggleModal,
-    handleInputChange,
-    //setHasSubmittedEmail,
-    setIsLoading,
-    error,
-    setError,
-  } = useFormContext();
+  const [error, setError] = useState("");
+  const { handleInputChange, toggleModal, setIsLoading } = useFormContext();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -30,22 +24,20 @@ const EnterEmail: React.FC<Props> = ({ buttonText, placeholder }) => {
       setIsLoading(true);
 
       const response = await axios.post(createWithEmailUrl, postData);
-      // toggleModal();
-      // setInputValue("");
+
       // setHasSubmittedEmail(true);
 
       console.log("POST request successful:", response.data);
-      setError((prev) => ({ ...prev, email: "" }));
+      setInputValue("");
+      toggleModal();
+      setError("");
     } catch (error) {
       if (error?.response?.data?.error) {
-        setError((prev) => ({ ...prev, email: error.response.data.error }));
+        setError(error.response.data.error);
         console.log("Error:", error.response.data.error);
       } else {
         console.log("An unexpected error occurred:", error);
-        setError((prev) => ({
-          ...prev,
-          email: "An unexpected error occurred",
-        }));
+        setError("An unexpected error occurred");
       }
     } finally {
       setIsLoading(false);
@@ -66,7 +58,7 @@ const EnterEmail: React.FC<Props> = ({ buttonText, placeholder }) => {
           buttonText={buttonText}
           type="email"
           name="email"
-          error={error.email}
+          error={error}
         />
       </div>
     </form>

@@ -1,51 +1,47 @@
-import React from "react";
+import { useState } from "react";
 import InputField from "../FormFields/InputField";
 import Button from "../Buttons/Buttons";
 import { useFormContext } from "@/Context/useFormContext";
 import { useNavigate } from "react-router";
 import axios from "axios";
+
 import { updateUserUrl, createWithFormUrl, formObj } from "@/utils/constants";
 
 const InputFields: React.FC = () => {
   const {
     toggleModal,
     handleInputChange,
-    hasSubmittedEmail,
     setIsLoading,
     setFormData,
     formData,
   } = useFormContext();
+  const [error, setError] = useState(formObj);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
     try {
       setIsLoading(true);
-      let response;
-      if (hasSubmittedEmail) {
-        response = await axios.post(createWithFormUrl, formData, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-      }
-      if (!hasSubmittedEmail) {
-        response = await axios.put(updateUserUrl, formData, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-      }
+
+      const response = await axios.post(createWithFormUrl, formData);
+
+      console.log("POST request successful:", response.data);
 
       toggleModal();
       setFormData(formObj);
       navigate("/success");
-
-      console.log("POST request successful:", response?.data);
+      setError(formObj);
     } catch (error) {
-      console.error("Error:", error);
+      if (error?.response?.data?.error) {
+        setError(error.response.data.error);
+        console.log("Error:", error.response.data.error);
+      } else {
+        console.log("An unexpected error occurred:", error);
+        setError((prev) => ({
+          ...prev,
+        }));
+      }
     } finally {
       setIsLoading(false);
     }
