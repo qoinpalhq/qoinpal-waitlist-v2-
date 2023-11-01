@@ -15,7 +15,7 @@ const InputFields: React.FC = () => {
     setFormData,
     formData,
   } = useFormContext();
-  const [error, setError] = useState(formObj);
+  const [error, setError] = useState<any>({});
 
   const navigate = useNavigate();
 
@@ -50,8 +50,6 @@ const InputFields: React.FC = () => {
     }
   };
 
-  const isEmpty = formData.name.trim() === "" || formData.email.trim() === "";
-
   return (
     <div className="w-full">
       <div id="name_and_phone" className="flex flex-col md:flex-row gap-6 mb-6">
@@ -66,7 +64,7 @@ const InputFields: React.FC = () => {
             onChange={handleInputChange}
             type="text"
             isRequired
-            error={error.name}
+            error={error?.name || error?.Name || ""}
           />
         </div>
 
@@ -80,7 +78,7 @@ const InputFields: React.FC = () => {
             value={formData.phoneNumber}
             onChange={handleInputChange}
             type="text"
-            error={error.phoneNumber}
+            error={error?.phoneNumber || error?.PhoneNumber || ""}
           />
         </div>
       </div>
@@ -96,7 +94,7 @@ const InputFields: React.FC = () => {
           isRequired
           name="email"
           type="email"
-          error={error.email}
+          error={error?.email || error?.Email || ""}
         />
       </div>
 

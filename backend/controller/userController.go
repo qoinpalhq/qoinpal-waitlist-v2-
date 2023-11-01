@@ -50,8 +50,8 @@ func CreateUser(c *fiber.Ctx) error {
             // Define custom error messages for each field
 			
 			customErrorMessages := map[string]string{
-				"name":  "Name is required",
-				"email": "Email is required and must be valid",
+				"name":  "name is required",
+				"EMAIL": "Email is required and must be valid",
 			}
             customErrorMsg, ok := customErrorMessages[field]
             if ok {
