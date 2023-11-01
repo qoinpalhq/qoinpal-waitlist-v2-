@@ -53,4 +53,7 @@ You can manually set your postgres configuration in .env file if you have postgr
 
 ## Request body parameters
 
-### Name and Email is required
+**Name and Email is required**
+
+## Documentation
+[Postman](https://documenter.getpostman.com/view/17644263/2s9YJez2Lh)
