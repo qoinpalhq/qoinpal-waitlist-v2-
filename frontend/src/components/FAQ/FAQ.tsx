@@ -39,7 +39,7 @@ const FAQ = () => {
     };
 
     return (
-        <div className="">
+        <div className="" id="faqs">
             <h1 className="flex items-center justify-center text-bold text-[#111111] mb-10">
                 FAQs
             </h1>

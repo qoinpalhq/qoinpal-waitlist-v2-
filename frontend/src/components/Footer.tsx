@@ -8,7 +8,7 @@ import { slideIn } from '../utils/motion'
 
 const Footer = () => {
     return (
-        <div className="px-24 py-4">
+        <div className="px-24 py-4" id='contact'>
             <motion.div className="flex justify-between items-center" initial="hidden" whileInView="show" variants={slideIn("up","spring",0.4,3)}>
                 <div className="flex gap-2 items-center">
                     <img src={copyright} alt="Copyright" />
