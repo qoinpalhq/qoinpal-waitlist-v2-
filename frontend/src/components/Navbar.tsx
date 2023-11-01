@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import QoinpalLogo from "../../assets/QoinpalLogo.svg";
 import Button from "./Buttons/Buttons";
 import { useFormContext } from "@/Context/useFormContext";
@@ -7,8 +7,6 @@ import { motion } from "framer-motion";
 
 const Navbar = () => {
   const { toggleModal } = useFormContext();
-
-  const navigate = useNavigate();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Toggle mobile menu
