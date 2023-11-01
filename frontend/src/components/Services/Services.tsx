@@ -34,7 +34,7 @@ export default function Services() {
             text="Sign up on the waitlist"
             color="white"
             background="black"
-            size="large"
+            size="medium"
             onClickFunction={toggleModal}
           />
         </motion.div>

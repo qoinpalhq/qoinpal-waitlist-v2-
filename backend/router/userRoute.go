@@ -10,6 +10,5 @@ func SetupRoutes(app *fiber.App) {
 
 	users.Post("/waitlist", controller.CreateUser)
 	users.Post("/waitlist/user", controller.CreateUserWithEmail)
-	users.Put("/waitlist/user",controller.UpdateUser)
 	users.Get("/waitlist", controller.GetUsers)
 }

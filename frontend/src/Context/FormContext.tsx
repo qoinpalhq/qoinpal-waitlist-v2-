@@ -15,11 +15,6 @@ export const FormContextProvider: React.FC<{ children: ReactNode }> = ({
     useState<FormContextData["formData"]>(formObj);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<FormContextData["error"]>({
-    name: "",
-    email: "",
-  });
-  const [hasSubmittedEmail, setHasSubmittedEmail] = useState(false);
 
   // Functions
   const toggleModal = () => {
@@ -37,13 +32,11 @@ export const FormContextProvider: React.FC<{ children: ReactNode }> = ({
   // Value
   const contextValue: FormContextData = {
     formData,
-    error,
-    setError,
+
     isOpen,
     toggleModal,
     handleInputChange,
-    hasSubmittedEmail,
-    setHasSubmittedEmail,
+
     setFormData,
     isLoading,
     setIsLoading,

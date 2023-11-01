@@ -13,7 +13,6 @@ interface InputFieldProps {
   color?: string; // Add a textColor prop
   error?: string;
 }
-
 const InputField: React.FC<InputFieldProps> = ({
   id,
   placeholder,
@@ -63,8 +62,11 @@ const InputField: React.FC<InputFieldProps> = ({
         />
         {hasButton && (
           <button
-            className="bg-accent border w-full rounded-full p-2 my-4 border-accent md:rounded-none md:rounded-r-full md:absolute md:right-0 md:bottom-0 md:px-10 md:w-fit md:py-4 md:my-0"
+            className={`bg-accent border w-full rounded-full p-2 my-4 border-accent md:rounded-none md:rounded-r-full md:absolute md:right-0 md:bottom-0 md:px-10 md:w-fit md:py-4 md:my-0 ${
+              !value ? "bg-gray-400 pointer-events-none border-gray-400" : "" // Gray out if value is empty
+            }`}
             onClick={handleButtonClick}
+            disabled={!value} // Disable the button if value is empty
           >
             {buttonText}
           </button>
@@ -74,5 +76,4 @@ const InputField: React.FC<InputFieldProps> = ({
     </>
   );
 };
-
 export default InputField;

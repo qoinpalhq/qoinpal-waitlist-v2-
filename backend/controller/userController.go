@@ -6,46 +6,138 @@ import (
 	"github.com/ayowilfred95/database"
 	"github.com/ayowilfred95/model"
 	"github.com/gofiber/fiber/v2"
+	"github.com/go-playground/validator/v10"
+	"gorm.io/gorm"
+	 "fmt"
+
 )
 
+var validate = validator.New()
+
+
 type user struct {
-	Name  string `json:"name"`
-	Email string  `json:"email"`
-	PhoneNumber string `json:"phoneNumber"`
+	type user struct {
+    Name        string `json:"name" validate:"required"`
+    Email       string `json:"email" validate:"required,email"`
+    PhoneNumber string `json:"phoneNumber"`
 }
+
+}
+
+type ValidationErrors struct {
+    FieldErrors map[string]string
+}
+
 
 func CreateUser(c *fiber.Ctx) error {
-	// Get data from the req body and validate the body
-	// we store the data first in a struct
-	var body user
-	if err := c.BodyParser(&body); err != nil {
-		log.Println("Error parsing request body:", err)
-		return c.Status(400).JSON(fiber.Map{
-			"error": "Invalid body",
-		})
-	}
+    // Get data from the req body and validate the body
+    // We store the data first in a struct
+    var body user
+    if err := c.BodyParser(&body); err != nil {
+        log.Println("Error parsing request body:", err)
+        return c.Status(400).JSON(fiber.Map{
+            "error": "Invalid body",
+        })
+    }
 
-	// craete  a new user object with data from the request data
-	newUser := &model.User{Name: body.Name, Email: body.Email, PhoneNumber:body.PhoneNumber}
+	validationErrors := ValidationErrors{FieldErrors: make(map[string]string)}
 
-	// create the user in the database
-	result := database.DB.Create(newUser) 
+	if err := validate.Struct(body); err != nil {
+        for _, err := range err.(validator.ValidationErrors) {
+            field := err.Field()
+      
 
-	if result.Error != nil {
-		log.Println("Database error:", result.Error)
-		return c.Status(500).JSON(fiber.Map{
-			"error" : "Failed to create user",
-		})
-	}
+            // Define custom error messages for each field
+			
+			customErrorMessages := map[string]string{
+				"name":  "Name is required",
+				"email": "Email is required and must be valid",
+			}
+            customErrorMsg, ok := customErrorMessages[field]
+            if ok {
+                validationErrors.FieldErrors[field] = customErrorMsg
+            } else {
+                validationErrors.FieldErrors[field] = fmt.Sprintf("%s is invalid", field)
+            }
+        }
 
-	response := fiber.Map{
-		"name":body.Name,
-		"email":body.Email,
-		"phoneNumber":body.PhoneNumber,
-	}
-	return c.Status(201).JSON(response)
 
+        log.Println("Validation errors:", validationErrors.FieldErrors)
+
+        return c.Status(400).JSON(fiber.Map{
+            "error": "Validation error",
+            "field_errors": validationErrors.FieldErrors,
+        })
+    }
+
+
+
+    // Check if the user with the provided email exists in the database
+	var existingUser model.User
+    result := database.DB.Where("email = ?", body.Email).First(&existingUser)
+
+    if result.Error != nil {
+        if result.Error == gorm.ErrRecordNotFound {
+            // The email does not exist, create a new user
+            return createNewUser(c, &body)
+        } else {
+            log.Println("Database error:", result.Error)
+            return c.Status(500).JSON(fiber.Map{
+                "error": "Database error",
+            })
+        }
+    }
+
+    // The email exists, update the user
+    return updateUser(c, &body, &existingUser)
 }
+
+
+func createNewUser(c *fiber.Ctx, body *user) error {
+    // Create a new user object with data from the request data
+    newUser := &model.User{Name: body.Name, Email: body.Email, PhoneNumber: body.PhoneNumber}
+
+    // Create the user in the database
+    result := database.DB.Create(newUser)
+
+    if result.Error != nil {
+        log.Println("Database error:", result.Error)
+        return c.Status(500).JSON(fiber.Map{
+            "error": "Failed to create user",
+        })
+    }
+
+    response := fiber.Map{
+        "name": body.Name,
+        "email": body.Email,
+        "phoneNumber": body.PhoneNumber,
+    }
+    return c.Status(201).JSON(response)
+}
+
+func updateUser(c *fiber.Ctx, body *user, existingUser *model.User) error {
+    // Update the existing user with data from the request
+    existingUser.Name = body.Name
+    existingUser.PhoneNumber = body.PhoneNumber
+
+    // Update the user in the database
+    result := database.DB.Save(existingUser)
+
+    if result.Error != nil {
+        log.Println("Database error:", result.Error)
+        return c.Status(500).JSON(fiber.Map{
+            "error": "Failed to update user",
+        })
+    }
+
+    response := fiber.Map{
+        "name": existingUser.Name,
+        "email": existingUser.Email,
+        "phoneNumber": existingUser.PhoneNumber,
+    }
+    return c.Status(200).JSON(response)
+}
+
 
 
 // create a user with just email input field
@@ -90,66 +182,6 @@ func CreateUserWithEmail(c *fiber.Ctx)error{
 		return c.Status(201).JSON(response)
 }
 
-
-// create a struct to hold the data while being updated in the database
-type updateUser struct {
-	Name  string `json:"name"`
-	Email string  `json:"email"`
-	PhoneNumber string `json:"phoneNumber"`
-}
-
-func UpdateUser(c *fiber.Ctx) error {
-	// validate the body
-	var body updateUser
-	if err := c.BodyParser(&body); err != nil {
-		log.Println("Error parsing request body:", err)
-		return c.Status(400).JSON(fiber.Map{
-			"error": "Invalid body",
-		})
-	}
-
-	// get the email from the request body
-	email:= body.Email
-	if email == "" {
-		return c.Status(400).JSON(fiber.Map{
-			"error":"Please provide an email",
-		})
-	}
-
-	// Find the user by email in the database
-	var existingUser model.User
-	result := database.DB.Where("email = ?", email).First(&existingUser)
-	if result.Error != nil {
-		log.Println("Database error:", result.Error)
-		return c.Status(500).JSON(fiber.Map{
-			"error": "User not found",
-		})
-	}
-
-	// Updata user information if provided in the requestr
-	if body.Name != "" {
-		existingUser.Name = body.Name
-	}
-	if body.PhoneNumber != "" {
-		existingUser.PhoneNumber = body.PhoneNumber
-	}
-	
-	// save the updated user to the database
-	result = database.DB.Save(&existingUser)
-	if result.Error != nil {
-		log.Println("Database error:", result.Error)
-		return c.Status(500).JSON(fiber.Map{
-			"error":"Failed to update user",
-		})
-	}
-
-	response := fiber.Map{
-		"name": existingUser.Name,
-		"email": existingUser.Email,
-		"phoneNumber": existingUser.PhoneNumber,
-	}
-	return c.Status(200).JSON(response)
-}
 
 
 // Get all users created

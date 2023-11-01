@@ -25,8 +25,6 @@ const EnterEmail: React.FC<Props> = ({ buttonText, placeholder }) => {
 
       const response = await axios.post(createWithEmailUrl, postData);
 
-      // setHasSubmittedEmail(true);
-
       console.log("POST request successful:", response.data);
       setInputValue("");
       toggleModal();

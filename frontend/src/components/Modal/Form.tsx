@@ -34,8 +34,11 @@ const InputFields: React.FC = () => {
       setError(formObj);
     } catch (error) {
       if (error?.response?.data?.error) {
-        setError(error.response.data.error);
-        console.log("Error:", error.response.data.error);
+        setError((prev) => ({
+          ...prev,
+          ...error.response.data.field_errors,
+        }));
+        console.log("Error:", error.response.data);
       } else {
         console.log("An unexpected error occurred:", error);
         setError((prev) => ({
@@ -46,6 +49,8 @@ const InputFields: React.FC = () => {
       setIsLoading(false);
     }
   };
+
+  const isEmpty = formData.name.trim() === "" || formData.email.trim() === "";
 
   return (
     <div className="w-full">
@@ -61,6 +66,7 @@ const InputFields: React.FC = () => {
             onChange={handleInputChange}
             type="text"
             isRequired
+            error={error.name}
           />
         </div>
 
@@ -74,6 +80,7 @@ const InputFields: React.FC = () => {
             value={formData.phoneNumber}
             onChange={handleInputChange}
             type="text"
+            error={error.phoneNumber}
           />
         </div>
       </div>
@@ -89,6 +96,7 @@ const InputFields: React.FC = () => {
           isRequired
           name="email"
           type="email"
+          error={error.email}
         />
       </div>
 
@@ -96,8 +104,8 @@ const InputFields: React.FC = () => {
         onClickFunction={handleSubmit}
         text="Join waitlist"
         size="large"
-        color="black"
-        background="accent"
+        color={"black"}
+        background={"accent"}
       />
     </div>
   );
