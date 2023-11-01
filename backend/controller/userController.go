@@ -15,14 +15,14 @@ import (
 var validate = validator.New()
 
 
-type user struct {
 	type user struct {
     Name        string `json:"name" validate:"required"`
     Email       string `json:"email" validate:"required,email"`
     PhoneNumber string `json:"phoneNumber"`
 }
 
-}
+
+
 
 type ValidationErrors struct {
     FieldErrors map[string]string
@@ -205,9 +205,3 @@ func GetUsers(c *fiber.Ctx)error{
 
 
 // delete users 
-
-// func DeleteUser(c *fiber.Ctx)error{
-// 	// 
-	
-
-// }
