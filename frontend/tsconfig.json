@@ -16,9 +16,11 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "isolatedModules": false,
-    "noEmit": false,
+
     "jsx": "react-jsx",
     "jsxImportSource": "react",
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
 
     /* Linting */
     "strict": false,
