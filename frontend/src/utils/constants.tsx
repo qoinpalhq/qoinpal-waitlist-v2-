@@ -1,8 +1,11 @@
-export const createWithEmailUrl = "http://localhost:8080/api/waitlist/user";
+export const createWithEmailUrl =
+  "https://qoinpal-waitlist.onrender.com/api/waitlist/user";
 
-export const createWithFormUrl = "http://localhost:8080/api/waitlist";
+export const createWithFormUrl =
+  "https://qoinpal-waitlist.onrender.com/api/waitlist";
 
-export const updateUserUrl = "http://localhost:8080/api/waitlist/user";
+export const updateUserUrl =
+  "https://qoinpal-waitlist.onrender.com/api/waitlist/user";
 
 export const formObj = {
   name: "",
