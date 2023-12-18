@@ -29,17 +29,15 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden overflow-y-hidden scroll-smooth">
       {/* {isLoading && (
         <section className="min-h-screen bg-black">
           <Loading />
         </section>
       )} */}
-      {
-        <>
+
           <section className="min-h-screen bg-black">
             <Navbar />
-
             <HeroSection />
           </section>
           <Services />
@@ -48,8 +46,7 @@ const Home = () => {
           <Modal />
           <FAQ />
           {isMobile ? <MobileFooter /> : <Footer />}
-        </>
-      }
+
     </div>
   );
 };
